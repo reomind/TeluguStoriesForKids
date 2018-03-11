@@ -14,9 +14,13 @@ public class Categories {
     @SerializedName("name")
     private String name;
 
-    public Categories(String ID, String name){
+    @SerializedName("mediaID")
+    private String mediaID;
+
+    public Categories(String ID, String name, String mediaID){
         this.ID = ID;
         this.name = name;
+        this.mediaID = mediaID;
     }
 
     public String getID(){
@@ -34,4 +38,13 @@ public class Categories {
     public String getName(){
         return name;
     }
+
+    public String getMediaID(){
+        return mediaID;
+    }
+
+    public void setMediaID(String mediaID){
+        this.mediaID = mediaID;
+    }
+
 }

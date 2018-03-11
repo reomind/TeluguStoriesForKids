@@ -3,6 +3,8 @@ package consulting.zolute.telugustoriesforkids;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.List;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("testing");
         grid = (GridView)findViewById(R.id.gridview);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<CategoriesResponse> call = apiService.getCategories();
@@ -42,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<CategoriesResponse> call, Throwable t) {
                 Log.d("myLog",t.toString());
 
+            }
+        });
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("nLog",String.valueOf(i));
             }
         });
 
