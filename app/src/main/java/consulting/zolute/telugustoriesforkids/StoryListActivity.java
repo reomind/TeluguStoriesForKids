@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import consulting.zolute.telugustoriesforkids.activities.AVPlayerActivity;
 import consulting.zolute.telugustoriesforkids.activities.ImageScrollViewActivity;
 import consulting.zolute.telugustoriesforkids.activities.TextViewStoryActivity;
 import consulting.zolute.telugustoriesforkids.interfaces.RecyclerViewClickListener;
@@ -62,12 +63,18 @@ public class StoryListActivity extends AppCompatActivity {
                         break;
                     case "3":
                         //video
+                        intent = new Intent(getBaseContext(), AVPlayerActivity.class);
+                        intent.putExtra("MEDIA_ID",stories.get(position).getMediaID());
+                        startActivity(intent);
                         break;
                     case "4":
                         //audio
+                        intent = new Intent(getBaseContext(), AVPlayerActivity.class);
+                        intent.putExtra("MEDIA_ID",stories.get(position).getMediaID());
+                        startActivity(intent);
                         break;
                         default:
-
+                            Toast.makeText(getBaseContext(),"Nothing to do",Toast.LENGTH_SHORT).show();
                             break;
 
                 }

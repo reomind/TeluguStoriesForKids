@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".StoryListActivity" />
         <activity android:name=".activities.ImageScrollViewActivity" />
-        <activity android:name=".activities.TextViewStoryActivity"></activity>
+        <activity android:name=".activities.TextViewStoryActivity" />
+        <activity android:name=".activities.AVPlayerActivity"></activity>
     </application>
 
 </manifest>
