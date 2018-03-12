@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".StoryListActivity" />
-        <activity android:name=".activities.ImageScrollViewActivity"></activity>
+        <activity android:name=".activities.ImageScrollViewActivity" />
+        <activity android:name=".activities.TextViewStoryActivity"></activity>
     </application>
 
 </manifest>

@@ -4,12 +4,16 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.view.SimpleDraweeView;
+
+import com.github.chrisbanes.photoview.PhotoView;
+import com.squareup.picasso.Picasso;
 
 import consulting.zolute.telugustoriesforkids.R;
+import consulting.zolute.telugustoriesforkids.rest.ApiClient;
 
 public class ImageScrollViewActivity extends AppCompatActivity {
+
+    private String mediaID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +22,10 @@ public class ImageScrollViewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_image_scroll_view);
 
-        Uri uri = Uri.parse("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Big_Wood%2C_N2.JPG/1280px-Big_Wood%2C_N2.JPG");
+        PhotoView photoView = (PhotoView) findViewById(R.id.photo_view);
+        mediaID = getIntent().getExtras().getString("MEDIA_ID");
+        String url = ApiClient.APPLICATION_URL + "mediamanager/download/" + mediaID;
+        Picasso.get().load(url).into(photoView);
 
     }
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import consulting.zolute.telugustoriesforkids.activities.ImageScrollViewActivity;
+import consulting.zolute.telugustoriesforkids.activities.TextViewStoryActivity;
 import consulting.zolute.telugustoriesforkids.interfaces.RecyclerViewClickListener;
 import consulting.zolute.telugustoriesforkids.model.Story;
 import consulting.zolute.telugustoriesforkids.model.StoryResponse;
@@ -29,6 +30,7 @@ public class StoryListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private StoriesAdapter storyAdapter;
     private RecyclerViewClickListener listener;
+    private Intent intent;
 
 
     @Override
@@ -44,10 +46,34 @@ public class StoryListActivity extends AppCompatActivity {
         listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(getBaseContext(), "Position " + stories.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                String storyType = stories.get(position).getStoryType();
+                switch(storyType){
+                    case "1":
+                        //text
+                        intent = new Intent(getBaseContext(), TextViewStoryActivity.class);
+                        intent.putExtra("STORY_TEXT",stories.get(position).getStoryText());
+                        startActivity(intent);
+                        break;
+                    case "2":
+                        //image
+                        intent = new Intent(getBaseContext(), ImageScrollViewActivity.class);
+                        intent.putExtra("MEDIA_ID",stories.get(position).getMediaID());
+                        startActivity(intent);
+                        break;
+                    case "3":
+                        //video
+                        break;
+                    case "4":
+                        //audio
+                        break;
+                        default:
+
+                            break;
+
+                }
                 //start new activity
-                Intent intent = new Intent(getBaseContext(), ImageScrollViewActivity.class);
-                startActivity(intent);
+
+
             }
         };
         prepareStoryData();
