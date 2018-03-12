@@ -57,9 +57,11 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("nLog",String.valueOf(i));
                 String categoryID = categories.get(i).getID();
+                Log.d("mLog",categoryID);
                 Intent intent = new Intent(getBaseContext(),StoryListActivity.class);
                 intent.putExtra("CATEGORY_ID",categoryID);
                 startActivity(intent);
+                //Log.d("nLog",categories.get(i).getID());
 
             }
         });

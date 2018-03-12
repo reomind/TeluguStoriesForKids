@@ -23,31 +23,34 @@ public class StoryListActivity extends AppCompatActivity {
     private List<Story> stories = new ArrayList<>();
     private RecyclerView recyclerView;
     private StoriesAdapter storyAdapter;
-    public String categoryID = getIntent().getStringExtra("CATEGORY_ID");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_list);
+        setTitle("Select Stories");
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        storyAdapter = new StoriesAdapter(stories);
+
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(storyAdapter);
+
         prepareStoryData();
 
     }
 
     private void prepareStoryData() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        String categoryID = getIntent().getExtras().getString("CATEGORY_ID");
         Call<StoryResponse> call = apiService.getStories(categoryID);
         call.enqueue(new Callback<StoryResponse>() {
             @Override
             public void onResponse(Call<StoryResponse> call, Response<StoryResponse> response) {
                 stories = response.body().getStories();
                 Log.d("mLog","total stories found "+ stories.size());
-                storyAdapter.notifyDataSetChanged();
+                storyAdapter = new StoriesAdapter(stories);
+                recyclerView.setAdapter(storyAdapter);
             }
 
             @Override
@@ -55,5 +58,6 @@ public class StoryListActivity extends AppCompatActivity {
                 Log.d("mLog",t.toString());
             }
         });
+
     }
 }
