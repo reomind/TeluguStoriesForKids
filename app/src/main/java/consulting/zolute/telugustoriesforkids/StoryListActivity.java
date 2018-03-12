@@ -1,5 +1,6 @@
 package consulting.zolute.telugustoriesforkids;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import consulting.zolute.telugustoriesforkids.activities.ImageScrollViewActivity;
 import consulting.zolute.telugustoriesforkids.interfaces.RecyclerViewClickListener;
 import consulting.zolute.telugustoriesforkids.model.Story;
 import consulting.zolute.telugustoriesforkids.model.StoryResponse;
@@ -42,7 +44,10 @@ public class StoryListActivity extends AppCompatActivity {
         listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(getBaseContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Position " + stories.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                //start new activity
+                Intent intent = new Intent(getBaseContext(), ImageScrollViewActivity.class);
+                startActivity(intent);
             }
         };
         prepareStoryData();
