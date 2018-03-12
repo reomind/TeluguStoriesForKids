@@ -6,10 +6,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import consulting.zolute.telugustoriesforkids.interfaces.RecyclerViewClickListener;
 import consulting.zolute.telugustoriesforkids.model.Story;
 import consulting.zolute.telugustoriesforkids.model.StoryResponse;
 import consulting.zolute.telugustoriesforkids.rest.ApiClient;
@@ -23,6 +26,7 @@ public class StoryListActivity extends AppCompatActivity {
     private List<Story> stories = new ArrayList<>();
     private RecyclerView recyclerView;
     private StoriesAdapter storyAdapter;
+    private RecyclerViewClickListener listener;
 
 
     @Override
@@ -35,8 +39,14 @@ public class StoryListActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        listener = new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Toast.makeText(getBaseContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+            }
+        };
         prepareStoryData();
+
 
     }
 
@@ -49,7 +59,7 @@ public class StoryListActivity extends AppCompatActivity {
             public void onResponse(Call<StoryResponse> call, Response<StoryResponse> response) {
                 stories = response.body().getStories();
                 Log.d("mLog","total stories found "+ stories.size());
-                storyAdapter = new StoriesAdapter(stories);
+                storyAdapter = new StoriesAdapter(stories,listener);
                 recyclerView.setAdapter(storyAdapter);
             }
 

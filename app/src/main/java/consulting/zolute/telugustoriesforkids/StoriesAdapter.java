@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import consulting.zolute.telugustoriesforkids.interfaces.RecyclerViewClickListener;
 import consulting.zolute.telugustoriesforkids.model.Story;
 
 /**
@@ -18,24 +19,35 @@ import consulting.zolute.telugustoriesforkids.model.Story;
 public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.MyViewHolder> {
 
     private List<Story> stories;
+    private RecyclerViewClickListener mListener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView storyName;
-        public MyViewHolder(View view) {
+        private RecyclerViewClickListener mListener;
+
+        public MyViewHolder(View view, RecyclerViewClickListener listener) {
             super(view);
             storyName = (TextView) view.findViewById(R.id.storyName);
+            mListener = listener;
+            view.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            mListener.onClick(v,getAdapterPosition());
         }
     }
 
-    public StoriesAdapter(List<Story> stories){
+    public StoriesAdapter(List<Story> stories, RecyclerViewClickListener listener){
         this.stories = stories;
+        mListener = listener;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.story_list_row,parent,false);
-        return new MyViewHolder(itemView);
+        return new MyViewHolder(itemView, mListener);
     }
 
     @Override
