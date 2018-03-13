@@ -21,5 +21,6 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft ="true"
         android:src="@drawable/featured25"
-        android:id="@+id/typeIcon" />
+        android:id="@+id/typeIcon"
+        android:tint="@color/categoriesBg"/>
 </RelativeLayout>
