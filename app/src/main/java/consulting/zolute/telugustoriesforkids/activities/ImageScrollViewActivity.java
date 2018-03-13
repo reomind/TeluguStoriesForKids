@@ -14,6 +14,7 @@ import consulting.zolute.telugustoriesforkids.rest.ApiClient;
 public class ImageScrollViewActivity extends AppCompatActivity {
 
     private String mediaID;
+    private String storyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,8 @@ public class ImageScrollViewActivity extends AppCompatActivity {
 
         PhotoView photoView = (PhotoView) findViewById(R.id.photo_view);
         mediaID = getIntent().getExtras().getString("MEDIA_ID");
+        storyName = getIntent().getExtras().getString("STORY_NAME");
+        setTitle(storyName);
         String url = ApiClient.APPLICATION_URL + "mediamanager/download/" + mediaID;
         Picasso.get().load(url).into(photoView);
 

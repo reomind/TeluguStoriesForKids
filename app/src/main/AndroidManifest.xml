@@ -26,8 +26,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.TextViewStoryActivity"  android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.AVPlayerActivity"  android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.AVPlayerActivity"></activity>
     </application>
 
 </manifest>

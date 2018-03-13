@@ -27,11 +27,14 @@ import consulting.zolute.telugustoriesforkids.rest.ApiClient;
 
 public class AVPlayerActivity extends AppCompatActivity {
     private String mediaID;
+    private String storyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avplayer);
+        storyName = getIntent().getExtras().getString("STORY_NAME");
+        setTitle(storyName);
 
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         TrackSelection.Factory videoTrackSelectionFactory =

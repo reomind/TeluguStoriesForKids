@@ -38,7 +38,7 @@ public class StoryListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_list);
-        setTitle("Select Stories");
+        setTitle("కథనాన్ని ఎంచుకోండి");
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -53,24 +53,28 @@ public class StoryListActivity extends AppCompatActivity {
                         //text
                         intent = new Intent(getBaseContext(), TextViewStoryActivity.class);
                         intent.putExtra("STORY_TEXT",stories.get(position).getStoryText());
+                        intent.putExtra("STORY_NAME",stories.get(position).getTitle());
                         startActivity(intent);
                         break;
                     case "2":
                         //image
                         intent = new Intent(getBaseContext(), ImageScrollViewActivity.class);
                         intent.putExtra("MEDIA_ID",stories.get(position).getMediaID());
+                        intent.putExtra("STORY_NAME",stories.get(position).getTitle());
                         startActivity(intent);
                         break;
                     case "3":
                         //video
                         intent = new Intent(getBaseContext(), AVPlayerActivity.class);
                         intent.putExtra("MEDIA_ID",stories.get(position).getMediaID());
+                        intent.putExtra("STORY_NAME",stories.get(position).getTitle());
                         startActivity(intent);
                         break;
                     case "4":
                         //audio
                         intent = new Intent(getBaseContext(), AVPlayerActivity.class);
                         intent.putExtra("MEDIA_ID",stories.get(position).getMediaID());
+                        intent.putExtra("STORY_NAME",stories.get(position).getTitle());
                         startActivity(intent);
                         break;
                         default:
