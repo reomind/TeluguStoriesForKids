@@ -14,12 +14,12 @@ android {
         applicationId "consulting.zolute.telugustoriesforkids"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [onesignal_app_id: "b030916a-a81d-41df-baa8-382fea19196d",
-                               // Project number pulled from dashboard, local value is ignored.
-                               onesignal_google_project_number: "REMOTE"]
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "552713260082"]
 
     }
     buildTypes {
